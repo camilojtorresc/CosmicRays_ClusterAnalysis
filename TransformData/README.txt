@@ -12,8 +12,8 @@ Prepare your Corsika environment
 	To transform your binary data file you need to use the coast library. To
 	active coast library you need to do the following steps:
 
-	1. cd 'PATH-TO-CORSIKA-DIR'/corsika-77500
-	2. ./coconut
+	1. $ cd 'PATH-TO-CORSIKA-DIR'/corsika-77500
+	2. $ ./coconut
 
 
 	when you run ./coconut you install a Corsika executable to do the simul-
@@ -55,7 +55,7 @@ Transform your Binary_File
 
 	To transform your binary file you only need to run the next command line
 
-	1. make reader
+	1. $ make reader
 
 
 	That creates an executable file CorsikaReader  to run and transform your
@@ -63,7 +63,7 @@ Transform your Binary_File
 	
 	Then execute:
 
-	2. ./CorsikaReader Binary_File
+	2. $ ./CorsikaReader Binary_File
 
 
 	This output two .txt files with the particle and showers information
