@@ -2,7 +2,7 @@
 
 ### Git instructions
 
-Upload the repository
+Update repository
 
 `git add .`
 
