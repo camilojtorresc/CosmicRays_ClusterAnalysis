@@ -68,11 +68,11 @@ main (int argc, char **argv)
 
     ofstream MyFile(inputFile + "_particles.txt");                              
 
-          MyFile << "sh\tid\tx\ty\tt\tpx\tpy\tpz\tPsq\tek\tzha\taza\n";
+          MyFile << "NShow\tPId\tX\tY\tT\tPx\tPy\tPz\tPSq\tEne\tZhA\tAzA\n";
 
     ofstream SummaryFile(inputFile + "_showers.txt");
           
-          SummaryFile << "Shower\tEnergy\tZfirst\tTheta\tPhi\tParticles\n";
+          SummaryFile << "NShow\tEnergy\tZFInt\tZhAng\tAzAng\tNParticles\n";
           
     crs::MEventHeader Shower;
     while (cr.GetShower(Shower)) {
@@ -101,9 +101,9 @@ main (int argc, char **argv)
       } // end loop observation levels
 
       const double Energy = Shower.GetEnergy();
-      const double zenith = Shower.GetTheta();
-      const double azimuth = Shower.GetPhi();
-      const double Zfirst = Shower.GetZFirst();
+      const double zenith = Shower.GetTheta()*(180.0/M_PI);
+      const double azimuth = Shower.GetPhi()*(180.0/M_PI);
+      const double Zfirst = Shower.GetZFirst()*1e-5;
      
       crs::TSubBlock Data;
       while (cr.GetData (Data)) {
@@ -133,12 +133,12 @@ main (int argc, char **argv)
                   const double px = iPart.GetPx();
                   const double py = iPart.GetPy();
                   const double pz = iPart.GetPz();
-                  const double x  = iPart.GetX();
-                  const double y  = iPart.GetY();
+                  const double x  = iPart.GetX()*0.01;
+                  const double y  = iPart.GetY()*0.01;
                   const double t  = iPart.GetTime();
                   const double Psq = iPart.GetPSquared();
-                  const double zha = iPart.GetTheta();
-                  const double aza = atan2(py,px);
+                  const double zha = iPart.GetTheta()*(180.0/M_PI);
+                  const double aza = atan2(py,px)*(180.0/M_PI);
 
                   /* Full list of variables available : 
 CREAL 	GetWeight () const 
@@ -240,7 +240,11 @@ double 	GetE () const
  } // loop runs (usually just 1)    
   
   cout << " Read " << ShowerCounter << " showers from file " << endl;
-  
+  cout << " ¡¡¡Note: if the name of the file do not contain the number" << endl;
+  cout << " of showers analyzed, please change it in such a way that it contains " << endl;
+  cout << " information about the number of analyzed events!!!" << endl;
+  cout << " (ex. DAT000001_100k_particles.txt for an event with 100000 events analyzed)" << endl;
+          
   return 0;
 }
 

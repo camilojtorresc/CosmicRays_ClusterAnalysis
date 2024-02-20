@@ -4,7 +4,7 @@ AR = ar         # archiver
 LD = g++        # linker
 
 ifndef COAST_DIR
-  COAST_DIR=/home/asus/Progs/corsika-77500
+  COAST_DIR=/home/soma/Progs/corsika-77500
 endif
 
 ARFLAGS = rcs
